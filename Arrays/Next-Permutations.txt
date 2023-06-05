@@ -1,0 +1,45 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        if(nums.length<=1) return;
+        int a=0;
+        int b=0;
+        int size=nums.length;
+        
+        for(int i=size-2;i>=0;i--){
+            if(nums[i]<nums[i+1]){
+                a=i;
+                break;
+            }
+        }
+        
+        for(int i=size-1;i>=0;i--){
+            if(nums[i]>nums[a]){
+                b=i;
+                break;
+            }
+        }
+        
+        if(a==b){
+            Arrays.sort(nums);
+            return;
+        }
+        
+        // Swap
+        int temp2=nums[a];
+        nums[a]=nums[b];
+        nums[b]=temp2;
+        
+        // Reverse
+        int li=a+1;
+        int ri=size-1;
+        
+        while(li<ri){
+            int temp=nums[li];
+            nums[li]=nums[ri];
+            nums[ri]=temp;
+            li++;
+            ri--;
+        }
+        
+    }
+}
